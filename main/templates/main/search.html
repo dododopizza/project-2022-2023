@@ -1,0 +1,45 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Search
+{% endblock title %}
+
+{% block content %}
+<form method="post">
+{% csrf_token %}
+<div class="input-group">
+<select name="req" id="" class="form-control mt-0">
+{% for elem in form %}
+<option value="{{ elem }}">{{ elem }}</option>
+{% endfor %}
+</select>
+<span class="input-group-btn">
+                    <input type="submit" class="btn btn-primary" value="Поиск">
+                </span></div>
+
+</form>
+<hr>
+{% if res %}
+<ul class="list-group">
+{% for elem in res %}
+<a href="{% url 'profile' elem.id %}"><li class="list-group-item d-flex">
+{% if elem.photo %}
+<img src="{{ elem.photo.url }}" alt="" style="width: 17%; height: 17%;">
+{% else %}
+<img src="https://www.healinglight.in/img/testimonial/2.jpg"  style="width: 17%; height: 17%;">
+{% endif %}
+
+<div class="info">
+<p class="mt-2">Имя пользователя: {{ elem.user }}</p>
+<p class="mt-2">Страна: {{ elem.country }}</p>
+<p class="mt-2">Город: {{ elem.city }}</p>
+<p class="mt-2">Инструменты: {{ elem.tools }}</p></div>
+</li>
+</a>
+
+{% endfor %}
+</ul>
+{% else %}
+<div>Ненаход пользователей с таким ролем</div>
+{% endif %}
+{% endblock %}

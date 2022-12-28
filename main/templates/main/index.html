@@ -1,0 +1,65 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}
+index
+{% endblock %}
+
+{% block content %}
+<h2 class="text-center mb-5 pt-5 mt-5">Найди единомышленников и создавай <br> что-то новое уже сейчас! Не знаешь как?<br> Мы поможем!</h2>
+<form method="post" action="{% url "search" %}">
+{% csrf_token %}
+<div class="input-group" style="margin-right: auto; margin-left: auto;">
+<select name="req" id="" class="form-control mt-0">
+{% for elem in form %}
+<option value="{{ elem }}">{{ elem }}</option>
+{% endfor %}
+</select>
+{{ form.req }}
+<span class="input-group-btn">
+                    <input type="submit" class="btn btn-primary" value="Поиск">
+                </span></div>
+
+</form>
+<h1 class="mb-5" style="margin-top: 10%;">Как пользоваться сайтом?</h1>
+<img src={% static 'img/6ec373d4f0918e8b.png' %} alt="" style="width: 100%;">
+<h1 class="mb-5" style="margin-top: 10%;">Новые пользователи</h1>
+{% if res %}
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>Возраст</th>
+      <th>Роль</th>
+      <th>Город</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for elem in res %}
+  {% if elem.age != None %}
+  <tr onclick="document.getElementById('{{ elem.user }}0').click()">
+      <th style="width: 100px; height: 100px;">
+      {% if elem.photo %}
+      <img src="{{ elem.photo.url }}" alt="" class="rounded-circle" style="width: 100%; height: 100%;">
+      {% else %}
+      <img src="https://www.healinglight.in/img/testimonial/2.jpg" class="rounded-circle"  alt="" style="width: 100%; height: 100%;">
+      {% endif %}
+      </th>
+      <td>{{ elem.user }}</td>
+      <td>{{ elem.age }}</td>
+      <td>{{ elem.role }}</td>
+      <td>{{ elem.city }}</td>
+      <a href="{% url 'profile' elem.id %}" id="{{ elem.user }}0"></a>
+    </tr>
+    {% endif %}
+    {% endfor %}
+
+
+  </tbody>
+</table>
+{% else %}
+<p class="text-center">Нет новых пользователей</p>
+{% endif %}
+
+
+{% endblock %}

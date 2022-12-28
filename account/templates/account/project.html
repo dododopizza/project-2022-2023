@@ -1,0 +1,12 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Project{% endblock title %}
+
+{% block content %}
+<img src="{{ project.image }}" style="width: 40%; height: 20%; margin-left: 30%;">
+<h1 class="text-center">{{ project.name_project }}</h1>
+<hr>
+<h5 class="text-center">Дата: {{ project.date }}</h5>
+<h5 class="text-center">Не хватает: {{ project.who }}</h5>
+<h5 class="text-center">{{ project.info }}</h5>
+{% endblock content %}

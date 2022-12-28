@@ -1,0 +1,111 @@
+body {
+    font-size: 3vh !important;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.avatar {
+    width: 5%;
+    height: 5%;
+}
+
+p {
+    margin-bottom: 0 !important;
+}
+
+
+.bg-transparent {
+    transition: 0.5s;
+}
+
+.bg-dark {
+    transition: 0.5s;
+}
+
+.backg {
+    background: url('https://media.discordapp.net/attachments/830067551064555520/839867425465958400/683b561236f48204.png?width=473&height=473') 100% 100% no-repeat;
+    background-size: cover;
+}
+
+.backg2 {
+    height: 100% !important;
+}
+
+.input-group {
+    width: 35% !important;
+}
+
+.contforform {
+    padding: 5%;
+    background: white;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 40px;
+}
+
+.for-form {
+    width: 70% !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pr_f {
+    font-size: 2.5vh !important;
+    margin-top: 8%;
+}
+
+b {
+    margin-right: 1%;
+}
+
+.cont {
+    padding: 6% 5% 5% 5%;
+}
+
+div.container {
+    width: 30% !important;
+    margin-left: 0 !important;
+    margin-right: 5%;
+}
+
+.btn-blue {
+    background: rgb(21, 255, 196) !important;
+    color: white !important;
+    padding-left: 30% !important;
+    padding-right: 30% !important;
+    font-size: 3vh !important;
+    border-radius: 50px !important;
+}
+
+.container#profileinfo {
+    margin: 0 !important;
+    width: 100% !important;
+    padding-left: 3%;
+}
+
+.card-img-top {
+    width: 70% !important;
+    height: 30% !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+
+.info {
+    padding: 1%;
+}
+
+nav {
+    z-index: 100;
+}
+
+.form-control {
+    margin-top: 1% !important;
+}
+
+.container {
+    border-radius: 40px;
+}
+
+td {
+    vertical-align: middle;
+}

@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <title>{% block title %}{% endblock %}</title>
+    <script>
+    window.onscroll = function() {
+      var nav = document.getElementById('1');
+      var ex = document.getElementById('2');
+      var pos = ex.getBoundingClientRect().top + document.body.scrollTop;
+      if (pos < 0){
+        nav.classList.remove('bg-transparent');
+        nav.classList.add('bg-light');
+      }else{
+        nav.classList.add('bg-transparent');
+        nav.classList.remove('bg-light');
+      }
+    }
+    function ora(){
+      var bg = document.getElementById('backg');
+      var elem = document.getElementById('4');  
+      var top = elem.getBoundingClientRect().top + document.body.scrollTop;
+      if (window.innerHeight > top){
+        bg.style.height = (window.innerHeight-elem.clientHeight) + "px";
+      }
+    }
+    </script>
+    {% block head %} {% endblock %}
+  </head>
+  <body onload='ora();'>
+  <div class="backg" id="backg">
+  <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent mt-0 position-fixed w-100" id="1">
+      <div class="container-fluid">
+        <img src="{% static 'img/logo.png' %}" style="width: 4%; height: 4%;">
+        <img src="{% static 'img/d1228f2826cf7231.png' %}" style="width: 5%; height: 4%;">
+        <div class="collapse navbar-collapse" id="navbarNav" style="padding-left: 1%;">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active text-dark" aria-current="page" href="{% url "index" %}">На главную</a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url "profile" id %}">Профиль</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url "logout" %}">Выйти</a>
+            </li>
+            </ul></div>
+            <div style="margin-right: 2%;">
+              <div class="nav-link text-dark">{{ request.user }}</div>
+            </div>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url "login" %}">Залогиниться</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url "register" %}">Зарегистрироваться</a>
+            </li>
+            </ul></div>
+            {% endif %}
+          
+        
+      </div>
+    </nav>
+
+
+    <div class="cont" id="2" >{% block content %} {% endblock %}</div>
+    </div>
+    
+
+    <!-- Footer -->
+    <div class="bg-light p-2" id="4"><span style="
+				background: linear-gradient(153deg, #2692a0 10%, #f02ef9 100%);
+				-webkit-background-clip: text;
+				background-clip: text;
+				-webkit-text-fill-color: transparent;
+				color: #0B2349;
+				">project-2022</span></div>
+
+    <!-- JS Bootstrap -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
+      integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
+      integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

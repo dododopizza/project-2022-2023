@@ -1,0 +1,34 @@
+{% extends "main/base.html" %}
+
+{% block title %}Log-in{% endblock %}
+
+{% block content %}
+<div class="contforform">
+<h1 class="text-center">Логин</h1>
+    {% if err %}
+<script>
+window.onload = function(){
+alert('Ты что-то ввёл неправильно, повтори');
+}
+</script>
+    {% endif %}
+     <p class='text-center'>Пожалуйста, следуй за формой, чтобы залогиниться, <br>eсли ты не зарегестрирован, <a href="{% url "register" %}">зарегестрируйся</a>:</p>
+    <div class="for-form text-center mt-5">
+        <form  method="post">
+        {% for elem in form %}
+        
+        <p class="mt-4">
+        {{elem.label_tag}}
+        {{ elem }}
+        </p>
+        {% endfor %}
+            
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}"/>
+            <p><input type="submit" value="Залогиниться" class="btn btn-primary mt-4"></p>
+        </form>
+    </div>
+    </div>
+
+
+{% endblock %}

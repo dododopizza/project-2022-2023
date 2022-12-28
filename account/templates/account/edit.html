@@ -1,0 +1,34 @@
+{% extends "main/base.html" %}
+
+{% block title %}Создай свой аккаунт{% endblock %}
+
+{% block content %}
+<div class="contforform">
+<h1 class="text-center">Создай свой аккаунт</h1>
+{% if err %}
+<script>
+window.onload = function(){
+    alert('Try again')
+}
+</script>
+{% endif %}
+    <p class="text-center">Ты можешь создать аккаунт, следуя форме:</p>
+    <div class="for-form text-center mt-5">
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for elem in profile_form %}
+    <p class="mt-4">
+    {{ elem.errors }}
+    {{ elem.label_tag }}
+    {{ elem }}
+    </p>
+    {% endfor %}
+        <p><input type="submit" value="Сохранить" class="btn btn-primary mt-4"></p>
+
+    </form>
+    </div>
+
+    </div>
+
+
+{% endblock %}

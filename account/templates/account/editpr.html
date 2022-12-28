@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Создай проект{% endblock title %}
+
+{% block content %}
+{% if err %}
+<script>
+window.onload = function(){
+    alert('Повтори')
+}
+</script>
+{% endif %}
+<div class="contforform">
+<div class="for-form text-center mt-5">
+<form method="post" enctype="multipart/form-data">
+{% for elem in pr_form %}
+<p class="mt-4">
+{{ elem.label_tag }}
+{{ elem }}
+</p>
+{% endfor %}
+{% csrf_token %}
+<input type="submit" value="Сохранить" class="btn btn-primary mt-4">
+</form>
+</div>
+
+</div>
+
+{% endblock content %}

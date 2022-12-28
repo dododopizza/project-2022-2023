@@ -1,0 +1,86 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Профиль{% endblock title %}
+
+{% block head %}
+<script>
+
+</script>
+{% endblock head %}
+
+
+
+{% block content %}
+<div class="d-flex">
+
+<div class="container bg-light pb-5">
+{% if profile.photo %}
+<img src="{{ profile.photo.url }}" class="mt-4" style="width: 90%; height: 40%; margin-right:auto; margin-left: 5%;">
+{% else %}
+<img src="https://www.healinglight.in/img/testimonial/2.jpg" class="mt-4" style="width: 90%; height: 40%; margin-right:auto; margin-left: 5%;">
+{% endif %}
+<h2 class="text-center">{{ profile.user }}</h2>
+<div class="pr_f">Роль: <b>{{ profile.role }}</b></div>
+<div class="pr_f">Возрас: <b>{{ profile.age }}</b></div>
+<div class="pr_f">Страна: <b>{{ profile.country }}</b></div>
+<div class="pr_f">Город: <b>{{ profile.city }}</b></div>
+{% if id == profile.id %}<button class="btn btn-primary mt-4" href="{% url "edit" %}" ><a href="{% url "edit" %}" class="text-light">Редактировать профиль</a></button>{% endif %}
+</div>
+<div class="container bg-light" id="profileinfo">
+
+
+<div class="info" style="margin-top: 3%">
+<h5>Контакты: <br></h5>{% for elem in profile.email %}
+<b style="margin-top: 2%;">{{ elem }}<br></b>
+{% endfor %}
+</div>
+
+
+<div class="info">
+<h5>Инструменты: <b>{{ profile.tools }}</b></h5>
+
+</div>
+
+
+<div class="info">
+<h5>Интересы: <b>{{ profile.interest }}</b></h5>
+
+</div>
+
+
+<div class="info">
+<h5>Рабочее время: <b>{{ profile.work_time }}(GMT+{{ profile.GMT }})</b></h5>
+
+</div>
+
+<div class="project">
+<h5>Проекты:</h5>
+
+
+{% if project.date != None %}
+<div class="card bg-transparent border-0" style="width: 18rem;">
+{% if project.image %}
+<img src="{{ project.image }}" class="card-img-top" alt="...">
+{% endif %}
+
+  <div class="card-body">
+    <a href="{% url 'project' profile.id %}"><p class="card-title text-center mb-0" style="font-size:2.5vh;">{{ project.name_project }}</p></a>
+    <p style="font-size: 2vh" class="text-center">{{ project.date }} - В процессе </p>
+  </div>
+</div>
+{% else %}
+<p class="mt-4">Нет проектов</p>
+
+{% endif %}
+{% if id == profile.id %}
+<a href="{% url 'editpr' %}" class="btn btn-primary mb-4 mt-4">Добавить проект</a>
+{% endif %}
+
+
+</div>
+</div>
+
+
+</div></div>
+
+{% endblock content %}
